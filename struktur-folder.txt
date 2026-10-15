@@ -1,0 +1,70 @@
+haisen-store-backend/
+│
+├── src/
+│   ├── config/                  # Konfigurasi Global & Environment
+│   │   ├── database.py          # Koneksi Database (Supabase/PostgreSQL)
+│   │   ├── midtrans.py          # Konfigurasi Midtrans Client (Snap/Core API)
+│   │   ├── mailer.py            # Konfigurasi SMTP / Email Provider (Resend / SendGrid)
+│   │   ├── whatsapp.py          # Konfigurasi WhatsApp Gateway (Fonnte / Watzap / Wablas)
+│   │   └── settings.py          # Environment variables validation (Pydantic / Dotenv)
+│   │
+│   ├── core/                    # Core Engine, Security, Middleware, & Decorators
+│   │   ├── database_base.py     # Base Model ORM untuk SQLAlchemy/Prisma
+│   │   ├── exceptions.py        # Global Exception Handlers (Custom HTTP Exceptions)
+│   │   ├── middleware.py        # CORS, Gzip Compression, Request Logging & Timing
+│   │   ├── security.py          # JWT Token Generator/Decoder, Password Hashing (Bcrypt/Argon2)
+│   │   ├── dependencies.py      # Dependency Injection untuk Auth, Roles (Superadmin, Admin, Staff, User)
+│   │   ├── rate_limiter.py      # Proteksi Endpoint dari DDoS / Brute Force (Redis/Memory)
+│   │   └── base_service.py      # Base Class untuk OOP Service Layer
+│   │
+│   ├── modules/                 # Modul Berbasis Domain / Fitur
+│   │   │
+│   │   ├── auth/                # 1. Modul Autentikasi & Registrasi
+│   │   │   ├── auth_controller.py
+│   │   │   ├── auth_service.py
+│   │   │   ├── auth_repository.py
+│   │   │   ├── auth_model.py
+│   │   │   └── auth_schema.py
+│   │   │
+│   │   ├── users/               # 2. Modul Manajemen User & Multi-Role (Superadmin/Admin/Staff/User)
+│   │   │   ├── user_controller.py
+│   │   │   ├── user_service.py
+│   │   │   ├── user_repository.py
+│   │   │   ├── user_model.py
+│   │   │   └── user_schema.py
+│   │   │
+│   │   ├── products/            # 3. Modul Katalog Produk Digital & Layanan
+│   │   │   ├── product_controller.py
+│   │   │   ├── product_service.py
+│   │   │   ├── product_repository.py
+│   │   │   ├── product_model.py
+│   │   │   └── product_schema.py
+│   │   │
+│   │   ├── orders/              # 4. Modul Keranjang & Pemesanan (Checkout)
+│   │   │   ├── order_controller.py
+│   │   │   ├── order_service.py
+│   │   │   ├── order_repository.py
+│   │   │   ├── order_model.py
+│   │   │   └── order_schema.py
+│   │   │
+│   │   ├── payments/            # 5. Modul Pembayaran Midtrans & Webhook Handler
+│   │   │   ├── payment_controller.py
+│   │   │   ├── payment_service.py
+│   │   │   ├── payment_repository.py
+│   │   │   ├── payment_model.py
+│   │   │   └── payment_schema.py
+│   │   │
+│   │   └── notifications/       # 6. Modul Notifikasi Terpusat (Email & WhatsApp Service)
+│   │       ├── notification_service.py  # Berisi logic kirim email (receipt/link download) & WA blast
+│   │       └── notification_templates.py# Template teks/HTML email & pesan WhatsApp
+│   │
+│   ├── utils/                   # Fungsi Helper Global (Format Rupiah, String Generator, dll)
+│   │   ├── formatters.py
+│   │   └── generators.py
+│   │
+│   └── main.py                  # Entry Point Utama Aplikasi & Pendaftaran Router Modul
+│
+├── tests/                       # Unit & Integration Tests (Pytest / Jest)
+├── .env                         # Konfigurasi kunci rahasia
+├── Dockerfile                   # Untuk Containerisasi & Deployment cepat
+└── requirements.txt / package.json

@@ -1,0 +1,5 @@
+# Alembic migration versions directory
+# File migrasi otomatis di-generate dengan perintah:
+#   alembic revision --autogenerate -m "deskripsi perubahan"
+# Lalu jalankan:
+#   alembic upgrade head
